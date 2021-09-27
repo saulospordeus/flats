@@ -1,8 +1,14 @@
 <h1>Flats</h1>
 <h3>Boas vindas ao sistema de locação de apartamentos</h3>
 
+<% if @properties.empty? %>
+<p><span>"Nenhum imóvel disponível"</span></p>
+<% end %>
+
 <% @properties.each do |p| %>
-  <%= p.title %>
+  <%= link_to p.title, p%>
   <%= p.description %>
   Quartos: <%= p.rooms %>
 <% end %>
+
+<%= link_to 'Cadastrar Imóvel', new_property_path %>
