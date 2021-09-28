@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'Visitor register property' do
   it 'successfully' do
     #Arrange
-
+    PropertyType.create!(name: 'Casa')
+    PropertyType.create!(name: 'Apartamento')
     #Act
     visit root_path
     click_on 'Cadastrar Imóvel'
@@ -12,6 +13,7 @@ describe 'Visitor register property' do
     fill_in 'Quartos', with: '3'
     fill_in 'Banheiros', with: '2'
     fill_in 'Diária', with: 200
+    select 'Casa', from: 'Tipo'
     check 'Aceita Pets'
     check 'Vaga de Estacionamento'
     click_on 'Enviar'
@@ -21,6 +23,7 @@ describe 'Visitor register property' do
     expect(page).to have_content('Ótima casa perto da UFSC')
     expect(page).to have_content("Quartos: 3")
     expect(page).to have_content("Banheiros: 2")
+    expect(page).to have_text("Tipo: Casa")
     expect(page).to have_content("Aceita Pets: Sim")
     expect(page).to have_content("Estacionamento: Sim")
     expect(page).to have_content("Diária: R$ 200,00")

@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
 
     def property_params
       params.require(:property).permit(:title, :description, :rooms, :bathrooms,
-                                       :pets, :parking_slot, :daily_rate)
+                                       :pets, :parking_slot, :daily_rate, :property_type_id)
     end
 
 end

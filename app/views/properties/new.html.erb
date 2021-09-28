@@ -9,10 +9,15 @@
 <% end %>
 
 <%= form_with(model: @property) do |f| %>
+
   <div>
     <%= f.label :title, 'Título' %>
     <%= f.text_field :title %>
   </div>
+    <div>
+    <%= f.label :property_type_id, "Tipo" %>
+    <%= f.collection_select :property_type_id, PropertyType.all, :id, :name, prompt: 'Escolha um tipo' %>  
+    </div>
   <div>
     <%= f.label :description, 'Descrição' %>
     <%= f.text_field :description %>

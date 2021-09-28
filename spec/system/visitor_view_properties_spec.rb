@@ -3,14 +3,18 @@ require 'rails_helper'
 describe 'Visitor visit homepage' do
   it 'and view properties' do
     #Arrange => Preparar (os dados)
-    Property.create({ title: 'Casa com quintal em Copacabana', 
+    casa = PropertyType.create!(name: 'Casa')
+    apartamento = PropertyType.create!(name: 'Apartamento')
+
+
+    Property.create!({ title: 'Casa com quintal em Copacabana', 
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500
+                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, property_type: casa
                     })
 
-    Property.create({ title: 'Cobertura em Manaus', 
+    Property.create!({ title: 'Cobertura em Manaus', 
                       description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
-                      rooms: 5, parking_slot: false, bathrooms: 6, pets: false, daily_rate: 800
+                      rooms: 5, parking_slot: false, bathrooms: 6, pets: false, daily_rate: 800, property_type: apartamento
                     })
 
     #Act => Agir (executar a funcionalidade)
@@ -21,8 +25,10 @@ describe 'Visitor visit homepage' do
     expect(page).to have_text("Casa com quintal em Copacabana")
     expect(page).to have_text("Excelente casa, recém reformada com 2 vagas de garagem")
     expect(page).to have_text("Quartos: 3")
+    expect(page).to have_text("Tipo: Casa")
     expect(page).to have_text("Cobertura em Manaus")
     expect(page).to have_text("Cobertura de 300m2, churrasqueira e sauna privativa")
+    expect(page).to have_text("Tipo: Apartamento")
     expect(page).to have_text("Quartos: 5")
   end
 
@@ -34,9 +40,11 @@ describe 'Visitor visit homepage' do
 
   it 'and view property details' do
     #Arrange => Preparar (os dados)
+    casa = PropertyType.create!(name: 'Casa')
     Property.create({ title: 'Casa com quintal em Copacabana', 
                       description: 'Excelente casa, recém reformada com 2 vagas de garagem',
-                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500
+                      rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500,
+                      property_type: casa
                     })
 
     visit root_path
@@ -49,6 +57,8 @@ describe 'Visitor visit homepage' do
     expect(page).to have_text("Aceita Pets: Sim")
     expect(page).to have_text("Estacionamento: Sim")
     expect(page).to have_text("Diária: R$ 500")
+    expect(page).to have_text("Tipo: Casa")
+
 
   end
 end

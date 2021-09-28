@@ -1,0 +1,32 @@
+F.F
+
+Failures:
+
+  1) Visitor visit homepage and view properties
+     Failure/Error: expect(page).to have_text("Casa com quintal em Copacabana")
+       expected to find text "Casa com quintal em Copacabana" in "Flats\nBoas vindas ao sistema de locação de apartamentos\n\"Nenhum imóvel disponível\"\nCadastrar Imóvel"
+     # ./spec/system/visitor_view_properties_spec.rb:21:in `block (2 levels) in <top (required)>'
+
+  2) Visitor visit homepage and view property details
+     Failure/Error: click_on 'Casa com quintal em Copacabana'
+
+     Capybara::ElementNotFound:
+       Unable to find link or button "Casa com quintal em Copacabana"
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/node/finders.rb:303:in `block in synced_resolve'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/node/base.rb:83:in `synchronize'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/node/finders.rb:292:in `synced_resolve'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/node/finders.rb:53:in `find'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/node/actions.rb:26:in `click_link_or_button'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/session.rb:762:in `click_on'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/dsl.rb:53:in `call'
+     # /home/saulospordeus/.rvm/gems/ruby-3.0.1/gems/capybara-3.35.3/lib/capybara/dsl.rb:53:in `click_on'
+     # ./spec/system/visitor_view_properties_spec.rb:45:in `block (2 levels) in <top (required)>'
+
+Finished in 0.10818 seconds (files took 0.61491 seconds to load)
+3 examples, 2 failures
+
+Failed examples:
+
+rspec ./spec/system/visitor_view_properties_spec.rb:4 # Visitor visit homepage and view properties
+rspec ./spec/system/visitor_view_properties_spec.rb:37 # Visitor visit homepage and view property details
+
