@@ -1,4 +1,4 @@
-<h1>Cadastro de Imóvel</h1>
+<h1>Editar Imóvel</h1>
 
 <% if @property.errors.any? %>
   <ul>
@@ -18,7 +18,7 @@
     <%= f.label :property_type_id, "Tipo" %>
     <%= f.collection_select :property_type_id, PropertyType.all, :id, :name, prompt: 'Escolha um tipo' %>  
     </div>
-      <div>
+  <div>
     <%= f.label :property_location_id, "Região" %>
     <%= f.collection_select :property_location_id, PropertyLocation.all, :id, :name, prompt: 'Escolha uma região' %>  
   </div>
@@ -46,5 +46,5 @@
     <%= f.check_box :parking_slot %>
     <%= f.label :parking_slot, 'Vaga de Estacionamento' %>
   </div>
-  <%= f.submit 'Enviar' %>
+  <%= f.submit 'Editar' %>
 <% end %>

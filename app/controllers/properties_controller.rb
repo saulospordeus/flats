@@ -17,12 +17,26 @@ class PropertiesController < ApplicationController
             render :new
         end
     end
-    
+
+    def edit
+        @property = Property.find(params[:id])
+    end
+
+    def update
+        @property = Property.find(params[:id])
+        if @property.update(property_params)
+            redirect_to @property, notice: "Imóvel Editado!"
+        else
+            flash.now[:notice] = "Não foi possível editar."
+            render :edit 
+        end
+    end
+        #TODO testar manualmente esse render
     private
 
     def property_params
       params.require(:property).permit(:title, :description, :rooms, :bathrooms,
-                                       :pets, :parking_slot, :daily_rate, :property_type_id)
+                                       :pets, :parking_slot, :daily_rate, :property_type_id, :property_location_id)
     end
 
 end

@@ -8,6 +8,7 @@
 <% @properties.each do |p| %>
   <%= link_to p.title, p%>
   <%= p.description %>
+  Região: <%= p.property_location.name%>
   Tipo: <%= p.property_type.name%>
   Quartos: <%= p.rooms %>
 <% end %>

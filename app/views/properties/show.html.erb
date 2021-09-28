@@ -4,11 +4,15 @@
 </h1>
 <h2><%= @property.description %></h2>
 <dl>
-  <dt>Tipo: <%= @property.property_type.name%></dt>
+  <dd>Tipo: </dd>
+  <dt><%= @property.property_type.name%></dt>
 
+  <dd>Região: </dd>
+  <dt><%= @property.property_location.name%></dt>
 
   <dt>Quartos:</dt>
   <dd><%= @property.rooms %></dd>
+ 
   <dt>Banheiros:</dt>
   <dd><%= @property.bathrooms %></dd>
 
@@ -32,4 +36,5 @@
 </dl>
 
 </div>
+<%= link_to('Editar Imóvel', edit_property_path(@property)) %>
 <%= link_to('Voltar', root_path) %>
