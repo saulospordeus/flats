@@ -1,0 +1,10 @@
+<div>
+<h1>
+ Propriedades do tipo: <%= @property_type.name %>
+</h1>
+
+<% @property_type.properties.each do |p| %>
+<%= link_to p.title%>
+<%= p.description %>
+<% end %>
+  

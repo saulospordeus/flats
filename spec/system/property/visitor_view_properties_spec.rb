@@ -66,7 +66,36 @@ describe 'Visitor visit homepage' do
     expect(page).to have_text("Diária: R$ 500")
     expect(page).to have_text("Tipo: Casa")
     expect(page).to have_text("Região: Rio de Janeiro")
-
-
+  end
+ 
+  describe 'Visitor view properties by type' do
+  it 'successfully' do
+    #Arrange => Preparar (os dados)
+    rio = PropertyLocation.create!(name: 'Rio de Janeiro')
+    manaus = PropertyLocation.create!(name: 'Manaus')
+    casa = PropertyType.create!(name: 'Casa')
+    apartamento = PropertyType.create!(name: 'Apartamento')
+    Property.create!({ title: 'Casa com quintal em Copacabana', 
+    description: 'Excelente casa, recém reformada com 2 vagas de garagem',
+    rooms: 3, parking_slot: true, bathrooms: 2, pets: true, daily_rate: 500, 
+    property_type: casa, property_location: rio,
+     })
+    Property.create!({ title: 'Cobertura em Manaus', 
+    description: 'Cobertura de 300m2, churrasqueira e sauna privativa',
+    rooms: 5, parking_slot: false, bathrooms: 6, pets: false, daily_rate: 800, 
+    property_type: apartamento, property_location: manaus,
+     })
+     #Act
+    visit root_path
+    within '.property_types' do 
+      click_on 'Casa'
+    end
+     #Asssert
+     expect(page).to have_content('Propriedades do tipo: Casa')
+     expect(page).to have_content('Casa com quintal em Copacabana')
+    expect(page).to have_content('Excelente casa, recém reformada com 2 vagas de garagem')
+    expect(page).not_to have_content("Cobertura em Manaus")
+    expect(page).not_to have_content("Cobertura de 300m2, churrasqueira e sauna privativa")
+    end
   end
 end
