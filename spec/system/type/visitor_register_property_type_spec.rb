@@ -35,5 +35,20 @@ describe 'Visitor register property type' do
     expect(page).to have_text("não pode ficar em branco")
   end
 
+  it 'name must be unique' do
+    #Arrange
+    #Act
+    visit root_path
+    click_on 'Cadastrar Tipo de Imóvel'
+    fill_in 'Nome', with: 'Duplex'
+    click_on 'Enviar'
+    visit root_path
+    click_on 'Cadastrar Tipo de Imóvel'
+    fill_in 'Nome', with: 'Duplex'
+    click_on 'Enviar'
+    #Assert
+    expect(page).to have_text("tem de ser único")
+  end
+
 
 end
