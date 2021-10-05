@@ -6,7 +6,10 @@ describe 'Visitor register property' do
     PropertyLocation.create!(name: 'Florianópolis')
     PropertyType.create!(name: 'Casa')
     PropertyType.create!(name: 'Apartamento')
+    jane = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
+
     #Act
+    login_as jane, scope: :property_owner 
     visit root_path
     click_on 'Cadastrar Imóvel'
     fill_in 'Título', with: 'Casa em Florianópolis'
@@ -34,6 +37,9 @@ describe 'Visitor register property' do
   end
   
   it 'and must fill all fields' do
+    jane = PropertyOwner.create!(email: 'jane@doe.com.br', password: '123456789')
+
+    login_as jane, scope: :property_owner 
     visit root_path
     click_on 'Cadastrar Imóvel'
     click_on 'Enviar'
